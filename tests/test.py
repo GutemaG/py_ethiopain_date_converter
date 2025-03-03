@@ -1,15 +1,13 @@
 import unittest
 from datetime import datetime
-from ethiopian_date_convertor import (
-    EthDate,
-    create_ethiopian_date_from_parts,
+
+from ethiopian_date_converter.ethiopian_date_convertor import (
     to_ethiopian,
     to_gregorian,
     is_leap_year_et,
     ethiopian_month_length,
     get_et_month_name,
-    LONG_DAYS,
-    ETH_MONTHS,
+    EthDate,
 )
 
 
