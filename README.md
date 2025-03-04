@@ -35,11 +35,6 @@ You can install the package using
 ```python
 from ethiopian_date_converter.ethiopian_date_convertor import to_ethiopian, to_gregorian, EthDate
 
-# Convert Gregorian to Ethiopian
-gregorian_date = "2023-10-05"
-ethiopian_date = to_ethiopian(gregorian_date)
-print("Ethiopian Date:", ethiopian_date)  # Output: EthDate(day=25, month=1, year=2016)
-
 # Convert Ethiopian to Gregorian
 ethiopian_date = EthDate(25, 1, 2016)
 gregorian_date = to_gregorian(ethiopian_date)
@@ -56,7 +51,7 @@ print("Month Name:", month_name)  # Output: Fulbaana
 
 # Format Ethiopian date
 ethiopian_date = EthDate(25, 1, 2016)
-print("Formatted Date:", ethiopian_date.formatted)  # Output: መስከረም 25, 2016
+print("Formatted Date:", ethiopian_date.formatted())  # Output: መስከረም 25, 2016
 
 # Check if a year is a leap year
 print("Is 2015 a leap year?", EthDate(1, 1, 2015).is_leap_year)  # Output: True
@@ -72,32 +67,19 @@ print("Is date1 earlier than date2?", date1 < date2)  # Output: True
 
 # Format Ethiopian date
 ethiopian_date = EthDate(25, 1, 2016)
-print("Formatted Date:", ethiopian_date.formatted)  # Output: መስከረም 25, 2016
+print("Formatted Date:", ethiopian_date.formatted())  # Output: መስከረም 25, 2016
 
-# Get the number of days in a month
-days = ethiopian_month_length(1, 2016)
-print("Days in January 2016:", days)  # Output: 30
 
 # Get the day of the week
 day_of_week = EthDate(1, 1, 2016).day_of_week
 print("Day of the week:", day_of_week)  # Output: ሰኞ
 
 
-# Check if a year is a leap year
-print("Is 2015 a leap year?", EthDate(1, 1, 2015).is_leap_year)  # Output: True
-
-# Add days to a date
-new_date = EthDate(1, 1, 2016).add_days(30)
-print("New Date:", new_date)  # Output: EthDate(day=1, month=2, year=2016)
 
 # Compare dates
 date1 = EthDate(1, 1, 2016)
 date2 = EthDate(2, 1, 2016)
 print("Is date1 earlier than date2?", date1 < date2)  # Output: True
-
-# Ethiopian New Year (Meskerem 1)
-ethiopian_new_year = to_ethiopian("2023-09-11")
-print("Ethiopian New Year:", ethiopian_new_year)  # Output: EthDate(day=1, month=1, year=2016)
 
 # Ethiopian Christmas (Tir 29)
 ethiopian_christmas = to_ethiopian("2023-01-07")
