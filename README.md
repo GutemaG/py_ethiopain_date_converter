@@ -33,7 +33,7 @@ You can install the package using
 ### **Basic Conversion**
 
 ```python
-from ethiopian_date_converter import to_ethiopian, to_gregorian, EthDate
+from ethiopian_date_converter.ethiopian_date_convertor import to_ethiopian, to_gregorian, EthDate
 
 # Convert Gregorian to Ethiopian
 gregorian_date = "2023-10-05"
