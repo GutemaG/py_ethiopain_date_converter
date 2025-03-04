@@ -1,5 +1,5 @@
 from datetime import datetime, timedelta
-from typing import Literal, Optional, Callable
+from typing import Literal, Optional, Callable, Union
 
 # Define DateType as a Literal for type safety
 DateType = Literal["EN", "AMH", "AO", "CUSTOM"]
@@ -311,13 +311,39 @@ def get_day_no_gregorian(date: datetime) -> int:
     return days_in_previous_years + days_in_current_year
 
 
-def to_ethiopian(date: datetime) -> EthDate:
-    """Convert a Gregorian date to an Ethiopian date."""
+def to_ethiopian(date: Union[datetime, str]) -> EthDate:
+    """
+    Convert a Gregorian date (ISO format or datetime) to an Ethiopian date.
+
+    Args:
+        date: A datetime object or a string in ISO format (e.g., '2023-10-05')
+        if date is a string, it must be in ISO format (e.g., '2023-10-05')
+
+    Returns:
+        An EthDate object representing the Ethiopian date
+    """
+    if isinstance(date, str):
+        date = datetime.fromisoformat(date)
     return create_ethiopian_date(get_day_no_gregorian(date) - 2431)
 
 
-def to_gregorian(et_date: EthDate) -> datetime:
-    """Convert an Ethiopian date to a Gregorian date."""
+def to_gregorian(et_date: Union[EthDate, str]) -> datetime:
+    """
+    Convert an Ethiopian date to a Gregorian date.
+    supported formats:
+        - EthDate object
+        - string in 
+            - DD/MM/YYYY format
+            - D/M/YY format
+            - DD-MM-YYYY format
+            - D-M-YY format
+            - DD.MM.YYYY format
+            - D.M.YY format
+            - DD:MM:YYYY format
+    """
+    if isinstance(et_date, str):
+        et_date = EthDate.from_dmy_format(et_date)
+
     return gregorian_date_from_day_no(get_day_no_ethiopian(et_date) + 2431)
 
 

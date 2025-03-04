@@ -90,7 +90,8 @@ class TestEthiopianDateConverter(unittest.TestCase):
         # Test date subtraction
         date1 = EthDate(1, 1, 2016)
         date2 = EthDate(2, 1, 2016)
-        self.assertEqual(date2 - date1, 1)  # Difference of 1 day
+        diff = date2 - date1
+        self.assertEqual(diff.total_days, 1)  # Difference of 1 day
 
     def test_formatted_date(self):
         # Test formatted date output
