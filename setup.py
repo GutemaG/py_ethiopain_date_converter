@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as f:
 
 setup(
     name="py-ethiopian-date-converter",
-    version="0.1.0",  # Update this for new releases
+    version="0.1.1",  # Update this for new releases
     author="Birhanu Gudisa",
     author_email="bir13gud17@gmail.com",
     description="A Python package to convert dates between Gregorian and Ethiopian calendars.",
