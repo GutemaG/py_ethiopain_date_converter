@@ -1,5 +1,3 @@
-markdown
-Copy
 # Ethiopian Date Converter
 
 A Python package to convert dates between the **Gregorian** and **Ethiopian** calendars. It supports localization, formatting, and various utilities for working with Ethiopian dates.
@@ -144,5 +142,4 @@ Contributions are welcome! Please open an issue or submit a pull request on GitH
 # Future Features
  - integrate with django
  - add timedelta
- - 
-
+ - add more tests
