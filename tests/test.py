@@ -23,6 +23,14 @@ class TestEthiopianDateConverter(unittest.TestCase):
     def test_to_gregorian(self):
         self.assertEqual(to_gregorian(EthDate(24, 1, 2016)),
                          datetime(2023, 10, 5))
+
+        # this should raise an error
+        self.assertRaises(ValueError, to_gregorian, '2016-01-24')
+        self.assertEqual(to_gregorian('01-01-2013'),
+                         datetime(2020, 9, 11))
+        self.assertEqual(to_gregorian('01/01/2013'),
+                         datetime(2020, 9, 11))
+
         self.assertEqual(to_gregorian(EthDate(1, 1, 2013)),
                          datetime(2020, 9, 11))
         self.assertEqual(to_gregorian(EthDate(28, 4, 2015)),

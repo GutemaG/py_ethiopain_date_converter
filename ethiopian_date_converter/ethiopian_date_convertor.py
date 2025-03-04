@@ -86,7 +86,9 @@ class EthDate:
         if not parts or len(parts) != 3:
             raise ValueError(
                 "Invalid date format: cannot parse day, month, year")
-
+        if len(parts[0]) > 2 or len(parts[1]) > 2 or len(parts[2]) > 4:
+            raise ValueError(
+                "Invalid date format: day, month, year must have max 2 digits and year must have max 4 digits")
         day_str, month_str, year_str = parts
 
         try:

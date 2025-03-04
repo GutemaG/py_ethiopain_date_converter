@@ -94,6 +94,14 @@ print("Difference:", diff)  # Output: DateDiff(days=1, months=0, years=0, total_
 # get date from dmy format
 date = EthDate.from_dmy_format('27/01/1989')
 print("Date:", date)  # Output: EthDate(day=27, month=1, year=1989) 
+
+# get date from dmy format
+# NB:To use to_ethiopian from isoformat, the date must be in the format **YYYY-MM-DD**
+date = to_ethiopian('2023-01-01')
+print("Ethiopian Date:", date)  # Output: EthDate(day=23, month=4, year=2015) 
+
+to_gregorian('27/01/1989') # datetime.datetime(1996, 10, 7, 0, 0)
+
 ```
 
 ## **API Reference**
