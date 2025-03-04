@@ -94,6 +94,11 @@ class EthDate:
         gr_date = to_gregorian(self)
         return LONG_DAYS[gr_date.weekday()]
 
+    def weekday(self) -> int:
+        """Return the day of the week as an integer, where ሰኞ is 0 and እሁድ is 6"""
+        gr_date = to_gregorian(self)
+        return gr_date.weekday()
+
     def formatted(self, locale: DateType = "AMH") -> str:
         """Format this Ethiopian date as a string (e.g., 'መስከረም 12, 2015')."""
         return f"{get_et_month_name(self.month, locale)} {self.day}, {self.year}"
