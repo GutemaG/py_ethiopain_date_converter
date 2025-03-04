@@ -31,6 +31,54 @@ class EthDate:
         return f"EthDate(day={self.day}, month={self.month}, year={self.year})"
 
     @classmethod
+    def from_dmy_format(cls, date: str) -> "EthDate":
+        """
+        Create an Ethiopian date from a date string in one of the formats:
+            - DD/MM/YYYY (4-digit year)
+            - D/M/YY     (2-digit year)
+            - And similarly with '-', '.', ':', ' ' separators.
+
+        Examples:
+            - "3/2/23"      -> day=3, month=2, year=2023
+            - "03-02-2023"  -> day=3, month=2, year=2023
+            - "3.2.23"      -> day=3, month=2, year=2023
+        """
+        if len(date) < 5:  # e.g. "1/1/1" wouldn't be valid
+            raise ValueError("Invalid date format: too short to be valid")
+
+        possible_separators = ["/", "-", ".", ":", " "]
+        parts = None
+
+        for sep in possible_separators:
+            if sep in date:
+                split_parts = date.split(sep)
+                if len(split_parts) == 3:
+                    parts = split_parts
+                    break
+
+        if not parts or len(parts) != 3:
+            raise ValueError(
+                "Invalid date format: cannot parse day, month, year")
+
+        day_str, month_str, year_str = parts
+
+        try:
+            day = int(day_str)
+            month = int(month_str)
+        except ValueError:
+            raise ValueError("Day and month must be integers")
+
+        if len(year_str) == 2:
+            year = 2000 + int(year_str)
+        elif len(year_str) == 4:
+            year = int(year_str)
+        else:
+            raise ValueError(
+                "Year must be either 2 or 4 digits for D/M/YY or D/M/YYYY format")
+
+        return cls(day, month, year)
+
+    @classmethod
     def now(cls) -> "EthDate":
         """Get the current Ethiopian date."""
         return to_ethiopian(datetime.now())
