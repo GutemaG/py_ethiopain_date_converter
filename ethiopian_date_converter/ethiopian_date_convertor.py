@@ -19,6 +19,33 @@ AO_MONTHS = [
 ]
 
 
+class EthTimeDelta:
+    """Represents an Ethiopian time delta."""
+
+    def __init__(self, days: int = 0, hours: int = 0, minutes: int = 0, seconds: int = 0, microseconds: int = 0):
+        self.days = days
+        self.hours = hours
+        self.minutes = minutes
+        self.seconds = seconds
+        self.microseconds = microseconds
+
+    def __repr__(self):
+        return f"EthTimeDelta(days={self.days}, hours={self.hours}, minutes={self.minutes}, seconds={self.seconds}, microseconds={self.microseconds})"
+
+
+class DateDiff:
+    """Represents a date difference."""
+
+    def __init__(self, days: int = 0, months: int = 0, years: int = 0, total_days: int = 0):
+        self.days = days
+        self.months = months
+        self.years = years
+        self.total_days = total_days
+
+    def __repr__(self):
+        return f"DateDiff(days={self.days}, months={self.months}, years={self.years}, total_days={self.total_days})"
+
+
 class EthDate:
     """Represents an Ethiopian date."""
 
@@ -107,9 +134,15 @@ class EthDate:
         """Check if this date is later than or equal to another date."""
         return not self < other
 
-    def __sub__(self, other: "EthDate") -> int:
+    def __sub__(self, other: "EthDate") -> "DateDiff":
         """Calculate the difference in days between two Ethiopian dates."""
-        return get_day_no_ethiopian(self) - get_day_no_ethiopian(other)
+        diff = get_day_no_ethiopian(self) - get_day_no_ethiopian(other)
+        return DateDiff(
+            total_days=abs(diff),
+            years=abs(self.year - other.year),
+            months=abs(self.month - other.month),
+            days=abs(self.day - other.day)
+        )
 
     def add_days(self, days: int) -> "EthDate":
         """Add days to this Ethiopian date."""
